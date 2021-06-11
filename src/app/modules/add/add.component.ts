@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsInterface } from '../products/interface/products';
 import { ProductsService } from '../products/services/products.service';
+import { AddService } from './services/add.service';
 
 @Component({
   selector: 'app-add',
@@ -13,10 +14,11 @@ export class AddComponent implements OnInit {
   salesForm: FormGroup;
   defaultProduct = '';
   loading = true;
+  success = false;
   products: ProductsInterface[];
 
   constructor(
-    private readonly formBuilder: FormBuilder, private readonly productsService: ProductsService
+    private readonly formBuilder: FormBuilder, private readonly productsService: ProductsService, private readonly add: AddService
   ) {
   }
 
@@ -27,14 +29,20 @@ export class AddComponent implements OnInit {
 
   createForm(): void {
     this.salesForm = this.formBuilder.group({
-      product: ['', Validators.required],
+      productId: ['', Validators.required],
       amountSold: ['', Validators.required]
     });
   }
 
 
   onSubmit(): void {
-    console.log(this.salesForm.value);
+    this.add.postSales(this.salesForm.value).subscribe(
+      () => {
+        this.success = true;
+      }, error => {
+        this.salesForm.reset();
+      }, () => this.salesForm.reset()
+    );
   }
 
   getProducts(): void {
@@ -49,8 +57,5 @@ export class AddComponent implements OnInit {
       }
     );
   }
-
 }
 
-
-export const NAMES = ['pickclosest'];

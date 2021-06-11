@@ -7,8 +7,8 @@
   <form *ngIf=" products.length > 0" [formGroup]="salesForm" (ngSubmit)="onSubmit()" id="new-sale">
     <div class="form-row">
       <div>
-        <label for="product">Product: </label>
-        <select formControlName="product" aria-label="products" required id="product" [(ngModel)]="defaultProduct"
+        <label for="productId">Product: </label>
+        <select formControlName="product" aria-label="products" required id="productId" [(ngModel)]="defaultProduct"
                 [ngClass]="{ 'is-invalid': submitted && salesForm.controls.product.errors }">
           <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
         </select>
@@ -29,5 +29,9 @@
     </div>
 
   </form>
+
+  <div *ngIf="success">
+    The data has been saved.
+  </div>
 </div>
 

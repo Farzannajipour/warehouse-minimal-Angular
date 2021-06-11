@@ -5,6 +5,7 @@ import { ApiRequest } from './api-request';
 import { delay, filter, retryWhen, share, take } from 'rxjs/operators';
 import { HttpError } from '../../interfaces/http-error/http-error.interface';
 import { DEFAULT_ERROR_MESSAGE } from '../../constants/message.constants';
+import { HTTP_STATUS } from '../../constants/http-code.constants';
 
 
 @Injectable({
@@ -27,7 +28,6 @@ export class ApiService {
       this.http.request(req.getRequest())
         .pipe(
           filter((event: HttpEvent<any>) => event.type === HttpEventType.Response),
-          retryWhen(errors => errors.pipe(delay(500), take(10)))
         )
         .subscribe(
           (response: HttpResponse<any>) => {
@@ -35,6 +35,10 @@ export class ApiService {
             observer.next((rawResponse) ? response : response.body);
           },
           (error) => {
+            console.log(error);
+            if (error.status === HTTP_STATUS.SERVICE_UNAVAILABLE) {
+              retryWhen(errors => errors.pipe(delay(500), take(10)));
+            }
             observer.error(this.handleError(error));
           },
           () => {
