@@ -3,13 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
   declarations: [ProductsComponent],
+  exports: [
+    ProductsComponent
+  ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    MatButtonModule
   ]
 })
 export class ProductsModule { }

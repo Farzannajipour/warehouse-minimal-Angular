@@ -4,17 +4,27 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { ApiService } from './core/services/api/api.service';
+import { SalesModule } from './modules/sales/sales.module';
+import { ProductsModule } from './modules/products/products.module';
+import { HeaderComponent } from './core/header/header.component';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
+    HomeModule,
+    ProductsModule,
+    SalesModule,
     BrowserAnimationsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
