@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiRequest } from './api-request';
-import { filter, share } from 'rxjs/operators';
+import { delay, filter, retryWhen, share, take } from 'rxjs/operators';
 import { HttpError } from '../../interfaces/http-error/http-error.interface';
 import { DEFAULT_ERROR_MESSAGE } from '../../constants/message.constants';
 
@@ -22,11 +22,12 @@ export class ApiService {
     req.addHeader('Content-Type', 'application/json');
     req.addHeader('Accept', 'application/json');
 
-    // Create and return an observable with the processed response
+    // Create and return an observable with the processed response, added delay and take for retrying the request
     const obs$ = new Observable<object | HttpResponse<any>>((observer) => {
       this.http.request(req.getRequest())
         .pipe(
-          filter((event: HttpEvent<any>) => event.type === HttpEventType.Response)
+          filter((event: HttpEvent<any>) => event.type === HttpEventType.Response),
+          retryWhen(errors => errors.pipe(delay(500), take(10)))
         )
         .subscribe(
           (response: HttpResponse<any>) => {
