@@ -1,6 +1,7 @@
 # Warehouse minimal Angular project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
+It includes two main parts, Products (with its articles) and also Sales. 
 
 ## Development server
 
