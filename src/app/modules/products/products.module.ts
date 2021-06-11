@@ -6,6 +6,7 @@ import { ProductsComponent } from './products.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProductsService } from './services/products.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ProductsService } from './services/products.service';
     CommonModule,
     ProductsRoutingModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   providers: [ProductsService]
 })
