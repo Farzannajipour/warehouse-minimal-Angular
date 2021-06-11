@@ -1,0 +1,33 @@
+<mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
+
+<div *ngIf="products">
+  <div *ngIf="products.length === 0">
+    There is no product, you should first create a product.
+  </div>
+  <form *ngIf=" products.length > 0" [formGroup]="salesForm" (ngSubmit)="onSubmit()" id="new-sale">
+    <div class="form-row">
+      <div>
+        <label for="product">Product: </label>
+        <select formControlName="product" aria-label="products" required id="product" [(ngModel)]="defaultProduct"
+                [ngClass]="{ 'is-invalid': submitted && salesForm.controls.product.errors }">
+          <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+        </select>
+
+        <label class="mr-2" for="amountSold">Amount Sold: </label>
+        <input aria-label="amount Sold" type="number"
+               id="amountSold" name="amountSold" required formControlName="amountSold">
+
+        <div *ngIf="submitted && salesForm.controls.amountSold.errors">
+          <div *ngIf="salesForm.controls.amountSold.errors.required">Amount Sold is required</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center">
+      <button aria-label="Submit" type="submit">Submit</button>
+    </div>
+
+  </form>
+</div>
+

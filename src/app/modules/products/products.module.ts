@@ -7,6 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ProductsService } from './services/products.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -19,8 +22,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ProductsRoutingModule,
     MatButtonModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [ProductsService]
 })
-export class ProductsModule { }
+export class ProductsModule {
+}
