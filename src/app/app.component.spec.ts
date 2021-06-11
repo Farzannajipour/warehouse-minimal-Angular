@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ikea-assignment'`, () => {
+  it(`should have as title 'warehouse-minimal'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ikea-assignment');
+    expect(app.title).toEqual('warehouse-minimal');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ikea-assignment app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('warehouse-minimal app is running!');
   });
 });

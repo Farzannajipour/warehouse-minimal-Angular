@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ikea-assignment": {
+    "warehouse-minimal": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ikea-assignment",
+            "outputPath": "dist/warehouse-minimal",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ikea-assignment:build"
+            "browserTarget": "warehouse-minimal:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ikea-assignment:build:production"
+              "browserTarget": "warehouse-minimal:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ikea-assignment:build"
+            "browserTarget": "warehouse-minimal:build"
           }
         },
         "test": {
@@ -116,18 +116,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ikea-assignment:serve"
+            "devServerTarget": "warehouse-minimal:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ikea-assignment:serve:production"
+              "devServerTarget": "warehouse-minimal:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ikea-assignment",
+  "defaultProject": "warehouse-minimal",
   "cli": {
     "analytics": false
   }
